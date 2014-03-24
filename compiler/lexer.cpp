@@ -18,47 +18,22 @@ Lexer::Lexer() {
 void Lexer::parseLine(QString s) {
     mode = lexer::NOMODE;
     QString str;
-    qDebug() << s;
-    for (int i = 0; i < s.length(); i++) {
+    for (int i = 0; i < s.length(); ) {
         if (s[i] != lexer::SYMBOL_SPACE) {
             if (lexer::NOMODE == mode) {
-                updateModeBySymbolType(symbolType(s[i]));
-            }
-            if (lexer::NOMODE != mode) {
-                switch (mode) {
-                case lexer::NUMBER:
-                    if (lexer::DIGIT == symbolType(s[i])) {
-                        str += s[i];
-                    } else {
+                mode = (lexer::LexerMode)symbolType(s[i], mode);
+            } else {
+                if ((lexer::SymbolType)mode == symbolType(s[i], mode)) {
+                    str += s[i];
+                } else {
+                    if (!str.isEmpty()) {
                         lexems.append(str);
                         str.clear();
-                        str += s[i];
-                        updateModeBySymbolType(symbolType(s[i]));
                     }
-                    break;
-                case lexer::WORD:
-                    if ((lexer::DIGIT == symbolType(s[i])) ||
-                         (lexer::LETTER == symbolType(s[i]))) {
-                        str += s[i];
-                    } else {
-                        lexems.append(str);
-                        str.clear();
-                        str += s[i];
-                        updateModeBySymbolType(symbolType(s[i]));
-                    }
-
-                    break;
-                case lexer::META:
-                    if (lexer::METASYMBOL == symbolType(s[i])) {
-                        str += s[i];
-                    } else {
-                        lexems.append(str);
-                        str.clear();
-                        str += s[i];
-                        updateModeBySymbolType(symbolType(s[i]));
-                    }
-                    break;
+                    str += s[i];
+                    mode = (lexer::LexerMode)symbolType(s[i], mode);
                 }
+                i++;
             }
         } else {
             mode = lexer::NOMODE;
@@ -66,6 +41,7 @@ void Lexer::parseLine(QString s) {
                 lexems.append(str);
                 str.clear();
             }
+            i++;
         }
     }
     if (!str.isEmpty()) {
@@ -73,7 +49,7 @@ void Lexer::parseLine(QString s) {
     }
 }
 
-void Lexer::updateModeBySymbolType(lexer::SYMBOL_TYPE symbolType) {
+void Lexer::updateModeBySymbolType(lexer::SymbolType symbolType) {
     switch (symbolType) {
     case lexer::DIGIT:
         mode = lexer::NUMBER;
@@ -90,12 +66,16 @@ void Lexer::updateModeBySymbolType(lexer::SYMBOL_TYPE symbolType) {
     }
 }
 
-lexer::SYMBOL_TYPE Lexer::symbolType(QChar symbol) {
+lexer::SymbolType Lexer::symbolType(QChar symbol, lexer::LexerMode mode) {
     if (metasymbols.contains(symbol)) {
         return lexer::METASYMBOL;
     }
     if (symbol.isDigit()) {
-        return lexer::DIGIT;
+        if (lexer::NOMODE == mode) {
+            return lexer::DIGIT;
+        } else {
+            return lexer::LETTER;
+        }
     }
     if (symbol.isLetter()) {
         return lexer::LETTER;
@@ -167,6 +147,7 @@ void Parser::parseLine(QString s) {
 }
 
 void Parser::calcLine(QString var, QString s) {
+    Q_UNUSED(s)
     qDebug() << "intvars[var] : " << intvars[var];
     intvars[var] = 1;
     qDebug() << "intvars[var] : " << intvars[var];
