@@ -16,7 +16,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    lexer.cpp
+    lexer.cpp \
+    parser.cpp \
+    buffer.cpp
 
 HEADERS += \
-    lexer.h
+    lexer.h \
+    parser.h \
+    buffer.h
