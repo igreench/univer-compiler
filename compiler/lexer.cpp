@@ -49,23 +49,6 @@ void Lexer::parseLine(QString s) {
     }
 }
 
-void Lexer::updateModeBySymbolType(lexer::SymbolType symbolType) {
-    switch (symbolType) {
-    case lexer::DIGIT:
-        mode = lexer::NUMBER;
-        break;
-    case lexer::LETTER:
-        mode = lexer::WORD;
-        break;
-    case lexer::METASYMBOL:
-        mode = lexer::META;
-        break;
-    case lexer::OTHER:
-        mode = lexer::NOMODE;
-        break;
-    }
-}
-
 lexer::SymbolType Lexer::symbolType(QChar symbol, lexer::LexerMode mode) {
     if (metasymbols.contains(symbol)) {
         return lexer::METASYMBOL;

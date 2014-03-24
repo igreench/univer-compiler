@@ -30,8 +30,6 @@ public:
 
     lexer::SymbolType symbolType(QChar symbol, lexer::LexerMode mode);
     lexer::LexerMode mode;
-
-    void updateModeBySymbolType(lexer::SymbolType symbolType);
 };
 
 class Parser
