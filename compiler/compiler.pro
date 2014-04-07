@@ -18,9 +18,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     lexer.cpp \
     parser.cpp \
-    buffer.cpp
+    buffer.cpp \
+    tokenizer.cpp
 
 HEADERS += \
     lexer.h \
     parser.h \
-    buffer.h
+    buffer.h \
+    tokenizer.h

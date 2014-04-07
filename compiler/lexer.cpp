@@ -25,7 +25,8 @@ void Lexer::parseLine(QString s) {
                     str += s[i];
                 } else {
                     if (!str.isEmpty()) {
-                        lexems.append(str);
+                        //lexems.append(str);
+                        lexems.push_back(new Lexem(str, mode));
                         str.clear();
                     }
                     str += s[i];
@@ -34,16 +35,18 @@ void Lexer::parseLine(QString s) {
                 i++;
             }
         } else {
-            mode = lexer::NOMODE;
             if (!str.isEmpty()) {
-                lexems.append(str);
+                //lexems.append(str);
+                lexems.push_back(new Lexem(str, mode));
                 str.clear();
             }
+            mode = lexer::NOMODE;
             i++;
         }
     }
-    if (!str.isEmpty()) {
-        lexems.append(str);
+    if (!str.isEmpty()) {        
+        //lexems.append(str);
+        lexems.push_back(new Lexem(str, mode));
     }
 }
 
@@ -65,9 +68,11 @@ lexer::SymbolType Lexer::symbolType(QChar symbol, lexer::LexerMode mode) {
 }
 
 void Lexer::print() {
-    qDebug() << "metasymbols" << endl;
-    qDebug() << metasymbols << endl;
+    //qDebug() << "metasymbols" << endl;
+    //qDebug() << metasymbols << endl;
     qDebug() << "lexems" << endl;
-    qDebug() << lexems << endl;
+    for (int i = 0; i < lexems.size(); i++) {
+        qDebug() << lexems[i]->toString();
+    }
 }
 

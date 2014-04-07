@@ -3,3 +3,11 @@
 Buffer::Buffer()
 {
 }
+
+QChar Buffer::getChar() {
+
+}
+
+QChar Buffer::pickChar() {
+
+}
