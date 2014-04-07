@@ -3,6 +3,8 @@
 #include <QString>
 #include <QDebug>
 
+using namespace parser;
+
 Parser::Parser() {
     keywords.insert("print", parser::PRINT);
     keywords.insert("int", parser::INT);

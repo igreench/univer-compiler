@@ -32,12 +32,15 @@ namespace lexer {
     public:
         Lexer();
 
+        void parseLine(QString s);
+        void print();
+        QVector <Lexem*> getLexems();
+
+    private:
         QHash<QChar, lexer::MetaSymbols> metasymbols; //metasymbols
 
         //QStringList lexems;
         QVector <Lexem*> lexems;
-        void parseLine(QString s);
-        void print();
 
         lexer::SymbolType symbolType(QChar symbol, lexer::LexerMode mode);
         lexer::LexerMode mode;

@@ -76,3 +76,7 @@ void Lexer::print() {
     }
 }
 
+QVector <Lexem*> Lexer::getLexems() {
+    return lexems;
+}
+
