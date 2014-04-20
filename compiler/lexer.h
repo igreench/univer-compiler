@@ -5,6 +5,8 @@
 #include <QStringList>
 #include <QVector>
 
+//#include "buffer.h"
+
 namespace lexer {
 
     enum MetaSymbols {EQUAL = 0, PLUS, MINUS, MULT, DIV}; //=,+,-,*,/
@@ -19,12 +21,19 @@ namespace lexer {
             this->str = str;
             this->mode = mode;
         }
+
+        Lexem(QString str, LexerMode mode, int type) {
+            this->str = str;
+            this->mode = mode;
+            this->type = type;
+        }
         QString toString() {
-            return str + ", " + QString::number(mode);
+            return str + ", " + QString::number(mode) + ", " + QString::number(type);
         }
     private:
         QString str;
         LexerMode mode;
+        int type;
     };
 
     class Lexer

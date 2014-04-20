@@ -19,10 +19,12 @@ SOURCES += main.cpp \
     lexer.cpp \
     parser.cpp \
     buffer.cpp \
-    tokenizer.cpp
+    translator.cpp \
+    compiler.cpp
 
 HEADERS += \
     lexer.h \
     parser.h \
     buffer.h \
-    tokenizer.h
+    translator.h \
+    compiler.h

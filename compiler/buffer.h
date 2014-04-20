@@ -1,12 +1,13 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 
-#include "QChar"
+#include <QChar>
+#include <QString>
 
 class Buffer
 {
 public:
-    Buffer();
+    Buffer(QString filename);
 
     QChar getChar();
     QChar pickChar();

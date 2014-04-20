@@ -1,5 +1,5 @@
-CONFIG +=ordered
-TEMPLATE=subdirs
+CONFIG += ordered
+TEMPLATE = subdirs
 
-SUBDIRS=  compiler/compiler.pro#\
- #         tests
+SUBDIRS=  compiler/compiler.pro \
+        tests

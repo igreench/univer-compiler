@@ -26,7 +26,7 @@ void Lexer::parseLine(QString s) {
                 } else {
                     if (!str.isEmpty()) {
                         //lexems.append(str);
-                        lexems.push_back(new Lexem(str, mode));
+                        lexems.push_back(new Lexem(str, mode, symbolType(s[i], mode)));
                         str.clear();
                     }
                     str += s[i];

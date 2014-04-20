@@ -1,7 +1,7 @@
 #include "buffer.h"
 
-Buffer::Buffer()
-{
+Buffer::Buffer(QString filename) {
+    Q_UNUSED(filename)
 }
 
 QChar Buffer::getChar() {

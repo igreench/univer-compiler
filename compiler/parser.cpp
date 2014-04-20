@@ -75,3 +75,6 @@ void Parser::print() {
     qDebug() << keywords << endl;
 }
 
+void Parser::setLexems(QVector <Lexem*> lexems) {
+    this->lexems = lexems;
+}

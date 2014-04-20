@@ -3,6 +3,10 @@
 
 #include <QHash>
 
+#include "lexer.h"
+
+using namespace lexer;
+
 namespace parser {
 
     enum KeyWords {PRINT = 1, INT, DOUBLE};
@@ -21,6 +25,11 @@ namespace parser {
 
         void addIntVar(QString s);
         void print();
+
+        void setLexems(QVector <Lexem*> lexems);
+
+    private:
+        QVector <Lexem*> lexems;
     };
 }
 
