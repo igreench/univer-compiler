@@ -73,6 +73,10 @@ namespace parser {
 
         void setLexems(QVector<Lexem *> lexems);
 
+        QVector <Node*> getNodes() {
+            return nodes;
+        }
+
     private:
         QVector <Lexem*> lexems;
         QVector <Node*> nodes;

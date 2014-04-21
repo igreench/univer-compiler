@@ -13,7 +13,7 @@ Parser::Parser() {
 
     //maxPriority = 6; //don't right realization
 
-    nodes.clear();
+    //nodes.clear();
     nodesCount = 0;
     //
 }

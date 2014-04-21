@@ -4,6 +4,9 @@
 
 Translator::Translator()
 {
+
+    //code.clear();
+
     lexer::Lexer *lexer = new lexer::Lexer();
     //lexer->parseLine("int a = 0");
     //qDebug() << "int a = bdf123 + sdf /* fsdf */ / f-4++88-2435-234+1+134++314";
@@ -29,6 +32,10 @@ Translator::Translator()
     qDebug() << endl << "Parser" << endl;
     parser->print();
 
+    qDebug() << endl << "Translator" << endl;
+    setNodes(parser->getNodes());
+    print();
+
     /*tokenizer::Tokenizer *tokenizer = new tokenizer::Tokenizer(lexer->getLexems());
     tokenizer->tokenization();
     tokenizer->print();*/
@@ -44,4 +51,8 @@ Translator::Translator()
 
 void Translator::print() {
     //qDebug() << tree;
+
+    for (int i = 0; i < code.size(); i++) {
+        code[i]->print();
+    }
 }
