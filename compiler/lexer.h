@@ -50,7 +50,6 @@ namespace lexer {
     private:
         QHash<QChar, lexer::MetaSymbols> metasymbols; //metasymbols
 
-        //QStringList lexems;
         QVector <Lexem*> lexems;
 
         lexer::SymbolType symbolType(QChar symbol, lexer::LexerMode mode);

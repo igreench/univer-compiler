@@ -21,6 +21,18 @@ namespace parser {
             qDebug() << lexem->toString() << parent;
         }
 
+        int getPriority() {
+            return lexem->getPriority();
+        }
+
+        Lexem *getLexem() {
+            return lexem;
+        }
+
+        int getParent() {
+            return parent;
+        }
+
     private:
         int parent;
         Lexem *lexem;

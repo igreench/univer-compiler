@@ -7,6 +7,7 @@ class Compiler
 {
 public:
     Compiler();
+    void print();
 };
 
 #endif // COMPILER_H

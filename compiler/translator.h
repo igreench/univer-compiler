@@ -78,6 +78,9 @@ namespace translator {
         }
 
         void createFile();
+        void createHelloWorld();
+
+        void analyze();
 
     private:
         QVector <ByteCode*> code;

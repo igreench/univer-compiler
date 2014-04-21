@@ -22,6 +22,8 @@ void Compiler::print() {
     translator::Translator *translator = new translator::Translator();
     translator->setMaxPriority(parser->getMaxPriority());
     translator->setNodes(parser->getNodes());
+    translator->analyze();
     qDebug() << endl << "Translator" << endl;
     translator->print();
+    translator->createHelloWorld();
 }
