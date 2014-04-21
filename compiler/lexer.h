@@ -17,23 +17,25 @@ namespace lexer {
 
     class Lexem {
     public:
-        Lexem(QString str, LexerMode mode) {
+        Lexem(QString str, LexerMode mode, int priority) {
             this->str = str;
             this->mode = mode;
+            this->priority = priority;
         }
 
-        Lexem(QString str, LexerMode mode, int type) {
-            this->str = str;
-            this->mode = mode;
-            this->type = type;
-        }
         QString toString() {
-            return str + ", " + QString::number(mode) + ", " + QString::number(type);
+            return str + ", " + QString::number(mode) + ", " + QString::number(priority);
+        }        
+
+        int getPriority() {
+            return priority;
         }
+
     private:
         QString str;
         LexerMode mode;
         int type;
+        int priority;
     };
 
     class Lexer
@@ -43,7 +45,7 @@ namespace lexer {
 
         void parseLine(QString s);
         void print();
-        QVector <Lexem*> getLexems();
+        QVector<Lexem *> getLexems();
 
     private:
         QHash<QChar, lexer::MetaSymbols> metasymbols; //metasymbols
@@ -53,6 +55,9 @@ namespace lexer {
 
         lexer::SymbolType symbolType(QChar symbol, lexer::LexerMode mode);
         lexer::LexerMode mode;
+
+        int symbolPriority(QChar symbol, lexer::LexerMode mode);
+
     };
 }
 

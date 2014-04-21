@@ -1,15 +1,21 @@
 #include "parser.h"
 
 #include <QString>
-#include <QDebug>
+
 
 using namespace parser;
 
 Parser::Parser() {
-    keywords.insert("print", parser::PRINT);
+    /*keywords.insert("print", parser::PRINT);
     keywords.insert("int", parser::INT);
     keywords.insert("double", parser::DOUBLE);
-    parseMode = parser::FIND;
+    parseMode = parser::FIND;*/
+
+    //maxPriority = 6; //don't right realization
+
+    nodes.clear();
+
+    //
 }
 
 void Parser::parseLine(QString s) {
@@ -77,4 +83,7 @@ void Parser::print() {
 
 void Parser::setLexems(QVector <Lexem*> lexems) {
     this->lexems = lexems;
+
+    Node *node = new Node(nodes, lexems, 0, lexems.size(), 1, 0);
+    nodes.push_back(node);
 }
