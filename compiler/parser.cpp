@@ -14,6 +14,7 @@ Parser::Parser() {
     //maxPriority = 6; //don't right realization
 
     //nodes.clear();
+    maxPriority = 6;
     nodesCount = 0;
     //
 }

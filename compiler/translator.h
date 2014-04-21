@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QString>
+#include <QFile>
 
 #include "parser.h"
 
@@ -38,6 +39,7 @@ public:
 private:
     QVector <ByteCode*> code;
     QVector <Node*> nodes;
+    int maxPriority;
 };
 
 #endif // TRANSLATOR_H

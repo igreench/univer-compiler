@@ -13,8 +13,6 @@ namespace parser {
     enum KeyWords {PRINT = 1, INT, DOUBLE};
     enum ParseMode {FIND = 0, VAR, ASSIGN, END}; //find, var, "="
 
-    static int maxPriority = 6;
-
     class Node {
     public:
         Node(Lexem *lexem, int parent) {
@@ -77,6 +75,10 @@ namespace parser {
             return nodes;
         }
 
+        int getMaxPriority() {
+            return maxPriority;
+        }
+
     private:
         QVector <Lexem*> lexems;
         QVector <Node*> nodes;
@@ -86,6 +88,8 @@ namespace parser {
         //int maxPriority;
 
         int nodesCount;
+
+        int maxPriority;
     };
 }
 
