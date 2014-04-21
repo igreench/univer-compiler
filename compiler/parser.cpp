@@ -75,10 +75,18 @@ void Parser::addIntVar(QString s) {
 }
 
 void Parser::print() {
-    qDebug() << "intvars" << endl;
+    /*qDebug() << "intvars" << endl;
     qDebug() << intvars << endl;
     qDebug() << "keywords" << endl;
-    qDebug() << keywords << endl;
+    qDebug() << keywords << endl;*/
+
+    for (int i = 0; i < nodes.size(); i++) {
+        qDebug() << "id" << i;
+        nodes[i]->print();
+        //qDebug() << endl;
+    }
+
+
 }
 
 void Parser::setLexems(QVector <Lexem*> lexems) {
@@ -93,18 +101,20 @@ void Parser::createChilds(int begin, int end, int priority, int parent) {
     nodesCount++;
     //qDebug() << "priority" << "parent" << "begin" << "end" << endl;
     //qDebug() << priority << parent << begin << end << endl;
-    //Node *node = new Node(lexems, begin, end, priority, parent);
-    //nodes.push_back(node);
+
     if (priority <= maxPriority) {
         for (int curPriority = priority; curPriority <= maxPriority; curPriority++) {
             for (int i = begin; i < end; i++) {
                 //qDebug() << lexems[i]->toString() << i << endl;
                 if (curPriority == lexems[i]->getPriority()) {
+
+                    Node *node = new Node(lexems[i], parent);
+                    nodes.push_back(node);
                     //int id = nodes.size() + 1;
                     int id = nodesCount;
                     int curPos = i;
-                    qDebug() << "lexems" << "id" << "curPriority" << "begin" << "end" << "curPos";
-                    qDebug() << lexems[i]->toString()<< id << curPriority << begin << end << curPos;
+                    //qDebug() << "lexems" << "id" << "curPriority" << "begin" << "end" << "curPos";
+                    //qDebug() << lexems[i]->toString()<< id << curPriority << begin << end << curPos;
                     createChilds(begin, curPos, curPriority, id);
 
                     //qDebug() << "YEP";

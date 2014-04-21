@@ -89,7 +89,8 @@ int Lexer::symbolPriority(QChar symbol, lexer::LexerMode mode) {
 void Lexer::print() {
     //qDebug() << "metasymbols" << endl;
     //qDebug() << metasymbols << endl;
-    qDebug() << "lexems" << endl;
+    //qDebug() << "lexems" << endl;
+    qDebug() << endl;
     for (int i = 0; i < lexems.size(); i++) {
         qDebug() << lexems[i]->toString();
     }

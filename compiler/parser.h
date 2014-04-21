@@ -17,10 +17,10 @@ namespace parser {
 
     class Node {
     public:
-        Node(QVector <Lexem*> lexems, int begin, int end, int priority, int parent) {
-            qDebug() << parent << ", " << priority << ", " << begin << "," << end << endl;
+        Node(Lexem *lexem, int parent) {
+            //qDebug() << parent << ", " << priority << ", " << begin << "," << end << endl;
             this->parent = parent;
-            this->lexems = lexems;
+            this->lexem = lexem;
             //this->nodes = nodes;
             //createChilds(begin, end, priority);
         }
@@ -43,14 +43,15 @@ namespace parser {
         }*/
 
         void print() {
-            qDebug() << parent;
+            qDebug() << lexem->toString() << parent;
         }
 
     private:
         int parent;
         //Node *left;
         //Node *right;
-        QVector <Lexem*> lexems;
+        //QVector <Lexem*> lexems;
+        Lexem *lexem;
         //QVector <Node*> nodes;
     };
 

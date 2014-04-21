@@ -13,17 +13,21 @@ Translator::Translator()
     //qDebug() << "int a = 2 * 8/3-4" << endl;
     //lexer->parseLine("int a = 2 + 1 * 8/3-4");
 
+    qDebug() << "Example" << endl;
     qDebug() << "2 + 1 * 8/3-4" << endl;
     lexer->parseLine("2 + 1 * 8/3-4");
    // qDebug() << "4 - 3 + 2" << endl;
     //lexer->parseLine("4 - 3 + 2");
+
+    qDebug() << "Lexer";
     lexer->print();
 
     //
 
     parser::Parser *parser = new parser::Parser();
     parser->setLexems(lexer->getLexems());
-    //parser->print();
+    qDebug() << endl << "Parser" << endl;
+    parser->print();
 
     /*tokenizer::Tokenizer *tokenizer = new tokenizer::Tokenizer(lexer->getLexems());
     tokenizer->tokenization();
