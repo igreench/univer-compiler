@@ -2,6 +2,10 @@
 
 Compiler::Compiler()
 {
+
+}
+
+void Compiler::print() {
     qDebug() << "Example" << endl;
     qDebug() << "2 + 1 * 8/3-4";
 
