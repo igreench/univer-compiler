@@ -17,15 +17,15 @@ namespace parser {
 
     class Node {
     public:
-        Node(QVector <Node*> nodes, QVector <Lexem*> lexems, int begin, int end, int priority, int parent) {
+        Node(QVector <Lexem*> lexems, int begin, int end, int priority, int parent) {
             qDebug() << parent << ", " << priority << ", " << begin << "," << end << endl;
             this->parent = parent;
             this->lexems = lexems;
-            this->nodes = nodes;
-            createChilds(begin, end, priority);
+            //this->nodes = nodes;
+            //createChilds(begin, end, priority);
         }
 
-        void createChilds(int begin, int end, int priority) {
+        /*void createChilds(int begin, int end, int priority) {
             for (int curPriority = priority; priority < maxPriority; curPriority++) {
                 for (int i = begin; i < end; i++) {
                     if (curPriority == lexems[i]->getPriority()) {
@@ -40,7 +40,7 @@ namespace parser {
                     }
                 }
             }
-        }
+        }*/
 
         void print() {
             qDebug() << parent;
@@ -51,7 +51,7 @@ namespace parser {
         //Node *left;
         //Node *right;
         QVector <Lexem*> lexems;
-        QVector <Node*> nodes;
+        //QVector <Node*> nodes;
     };
 
 
@@ -76,7 +76,7 @@ namespace parser {
         QVector <Lexem*> lexems;
         QVector <Node*> nodes;
 
-        void createChilds(QVector <Node*> nodes, QVector <Lexem*> lexems, int begin, int end, int priority, int parent);
+        void createChilds(QVector <Lexem*> lexems, int begin, int end, int priority, int parent);
 
         //int maxPriority;
     };
