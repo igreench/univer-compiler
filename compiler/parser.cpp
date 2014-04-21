@@ -95,7 +95,7 @@ void Parser::setLexems(QVector <Lexem*> lexems) {
 
     //Node *node = new Node(0, lexems.size(), 1);
     //nodes.push_back(node);
-    createChilds(0, lexems.size(), 1, 0);
+    createChilds(0, lexems.size(), 1, -1);
 }
 
 void Parser::createChilds(int begin, int end, int priority, int parent) {
@@ -108,11 +108,12 @@ void Parser::createChilds(int begin, int end, int priority, int parent) {
             for (int i = begin; i < end; i++) {
                 //qDebug() << lexems[i]->toString() << i << endl;
                 if (curPriority == lexems[i]->getPriority()) {
-
+                    int id = nodes.size();
                     Node *node = new Node(lexems[i], parent);
                     nodes.push_back(node);
                     //int id = nodes.size() + 1;
-                    int id = nodesCount;
+
+                    //int id = nodesCount;
                     int curPos = i;
                     //qDebug() << "lexems" << "id" << "curPriority" << "begin" << "end" << "curPos";
                     //qDebug() << lexems[i]->toString()<< id << curPriority << begin << end << curPos;
