@@ -60,8 +60,8 @@ Translator::Translator()
 
     //body
 
-    for (int i = 0; i < nodes.size(); i++) {
-        //nodes[i]->print();
+    for (int i = 0; i < code.size(); i++) {
+        out << code[i]->toString();
     }
 
     //end

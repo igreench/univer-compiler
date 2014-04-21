@@ -16,8 +16,43 @@ public:
         this->value = value;
     }
 
+    ByteCode(int priority, QString value) {
+        this->value = value;
+
+        switch (priority) {
+        case 1:
+            this->cmd = "   iadd\n";
+            break;
+        case 2:
+            //this->cmd = "   ineg\n";
+            this->cmd = "   isub\n";
+            break;
+        case 3:
+            this->cmd = "   imul\n";
+            break;
+        case 4:
+            this->cmd = "   idiv\n";
+            break;
+        case 5:
+            this->cmd = "   sipush ";
+            break;
+        }
+    }
+
     void print() {
-        qDebug() << cmd << value;
+        if (value.isEmpty()) {
+            qDebug() << cmd;
+        } else {
+            qDebug() << cmd << value << "\n";
+        }
+    }
+
+    QString toString() {
+        //return cmd + value;
+        if (value.isEmpty()) {
+            return cmd;
+        }
+        return cmd + value + "\n";
     }
 
 private:
