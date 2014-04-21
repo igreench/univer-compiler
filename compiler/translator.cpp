@@ -10,9 +10,11 @@ Translator::Translator()
     //lexer->parseLine("int a = bdf123 + sdf /* fsdf */ / f-4++88-2435-234+1+134++314");
 
 
-    qDebug() << "int a = 2 * 8/3-4" << endl;
-    lexer->parseLine("int a = 2 + 1 * 8/3-4");
-    //lexer->print();
+    //qDebug() << "int a = 2 * 8/3-4" << endl;
+    //lexer->parseLine("int a = 2 + 1 * 8/3-4");
+    qDebug() << "2 + 1 * 8/3-4" << endl;
+    lexer->parseLine("2 + 1 * 8/3-4");
+    lexer->print();
 
     //
 

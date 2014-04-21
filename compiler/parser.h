@@ -30,6 +30,7 @@ namespace parser {
                 for (int i = begin; i < end; i++) {
                     if (curPriority == lexems[i]->getPriority()) {
                         int id = nodes.size() + 1;
+                        qDebug() << lexems[i]->toString() << ", " << id << ", " << curPriority << ", " << begin << "," << end << ", " << i << endl;
                         left = new Node(nodes, lexems, begin, i, curPriority, id);
                         nodes.push_back(left);
                         right = new Node(nodes, lexems, i + 1, end, curPriority, id);
