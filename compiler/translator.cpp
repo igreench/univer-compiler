@@ -12,8 +12,11 @@ Translator::Translator()
 
     //qDebug() << "int a = 2 * 8/3-4" << endl;
     //lexer->parseLine("int a = 2 + 1 * 8/3-4");
+
     qDebug() << "2 + 1 * 8/3-4" << endl;
     lexer->parseLine("2 + 1 * 8/3-4");
+   // qDebug() << "4 - 3 + 2" << endl;
+    //lexer->parseLine("4 - 3 + 2");
     lexer->print();
 
     //

@@ -30,11 +30,13 @@ namespace parser {
                 for (int i = begin; i < end; i++) {
                     if (curPriority == lexems[i]->getPriority()) {
                         int id = nodes.size() + 1;
-                        qDebug() << lexems[i]->toString() << ", " << id << ", " << curPriority << ", " << begin << "," << end << ", " << i << endl;
-                        left = new Node(nodes, lexems, begin, i, curPriority, id);
+                        int curPos = i;
+                        qDebug() << lexems[i]->toString() << ", " << id << ", " << curPriority << ", " << begin << "," << end << ", " << curPos << endl;
+                        Node *left = new Node(nodes, lexems, begin, curPos, curPriority, id);
                         nodes.push_back(left);
-                        right = new Node(nodes, lexems, i + 1, end, curPriority, id);
+                        Node *right = new Node(nodes, lexems, curPos + 1, end, curPriority, id);
                         nodes.push_back(right);
+
                     }
                 }
             }
@@ -46,8 +48,8 @@ namespace parser {
 
     private:
         int parent;
-        Node *left;
-        Node *right;
+        //Node *left;
+        //Node *right;
         QVector <Lexem*> lexems;
         QVector <Node*> nodes;
     };
@@ -73,6 +75,8 @@ namespace parser {
     private:
         QVector <Lexem*> lexems;
         QVector <Node*> nodes;
+
+        void createChilds(QVector <Node*> nodes, QVector <Lexem*> lexems, int begin, int end, int priority, int parent);
 
         //int maxPriority;
     };
