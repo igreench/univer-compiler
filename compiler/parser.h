@@ -76,9 +76,11 @@ namespace parser {
         QVector <Lexem*> lexems;
         QVector <Node*> nodes;
 
-        void createChilds(QVector <Lexem*> lexems, int begin, int end, int priority, int parent);
+        void createChilds(int begin, int end, int priority, int parent);
 
         //int maxPriority;
+
+        int nodesCount;
     };
 }
 
