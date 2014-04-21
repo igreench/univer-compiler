@@ -18,7 +18,6 @@ void Lexer::parseLine(QString s) {
     QString str;
     int curPriority = -1;
     for (int i = 0; i < s.length(); ) {
-        //curPriority = symbolPriority(s[i], mode);
         if (s[i] != lexer::SYMBOL_SPACE) {
             if (lexer::NOMODE == mode) {
                 mode = (lexer::LexerMode)symbolType(s[i], mode);
@@ -28,7 +27,6 @@ void Lexer::parseLine(QString s) {
                     str += s[i];
                 } else {
                     if (!str.isEmpty()) {
-                        //lexems.append(str);
                         lexems.push_back(new Lexem(str, mode, curPriority));
                         str.clear();
                     }
@@ -40,7 +38,6 @@ void Lexer::parseLine(QString s) {
             }
         } else {
             if (!str.isEmpty()) {
-                //lexems.append(str);
                 lexems.push_back(new Lexem(str, mode, curPriority));
                 str.clear();
             }
@@ -49,7 +46,6 @@ void Lexer::parseLine(QString s) {
         }
     }
     if (!str.isEmpty()) {        
-        //lexems.append(str);
         lexems.push_back(new Lexem(str, mode, curPriority));
     }
 }
@@ -59,7 +55,6 @@ lexer::SymbolType Lexer::symbolType(QChar symbol, lexer::LexerMode mode) {
         return lexer::METASYMBOL;
     }
     if (symbol.isDigit()) {
-        //qDebug() << "is digit: " << symbol;
         if (lexer::WORD == mode) {
             return lexer::LETTER;
         } else {
@@ -73,7 +68,6 @@ lexer::SymbolType Lexer::symbolType(QChar symbol, lexer::LexerMode mode) {
 }
 
 int Lexer::symbolPriority(QChar symbol, lexer::LexerMode mode) {
-    //if (lexer::META == mode) {
     if (metasymbols.contains(symbol)) {
         return metasymbols.value(symbol);
     }
@@ -86,11 +80,7 @@ int Lexer::symbolPriority(QChar symbol, lexer::LexerMode mode) {
     return -1;
 }
 
-void Lexer::print() {
-    //qDebug() << "metasymbols" << endl;
-    //qDebug() << metasymbols << endl;
-    //qDebug() << "lexems" << endl;
-    qDebug() << endl;
+void Lexer::print() {    
     for (int i = 0; i < lexems.size(); i++) {
         qDebug() << lexems[i]->toString();
     }

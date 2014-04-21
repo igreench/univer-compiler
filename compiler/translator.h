@@ -9,72 +9,82 @@
 
 using namespace parser;
 
-class ByteCode {
-public:
-    ByteCode(QString cmd, QString value) {
-        this->cmd = cmd;
-        this->value = value;
-    }
+namespace translator {
 
-    ByteCode(int priority, QString value) {
-        this->value = value;
-
-        switch (priority) {
-        case 1:
-            this->cmd = "   iadd\n";
-            break;
-        case 2:
-            //this->cmd = "   ineg\n";
-            this->cmd = "   isub\n";
-            break;
-        case 3:
-            this->cmd = "   imul\n";
-            break;
-        case 4:
-            this->cmd = "   idiv\n";
-            break;
-        case 5:
-            this->cmd = "   sipush ";
-            break;
+    class ByteCode {
+    public:
+        ByteCode(QString cmd, QString value) {
+            this->cmd = cmd;
+            this->value = value;
         }
-    }
 
-    void print() {
-        if (value.isEmpty()) {
-            qDebug() << cmd;
-        } else {
-            qDebug() << cmd << value << "\n";
+        ByteCode(int priority, QString value) {
+            this->value = value;
+
+            switch (priority) {
+            case 1:
+                this->cmd = "   iadd\n";
+                break;
+            case 2:
+                //this->cmd = "   ineg\n";
+                this->cmd = "   isub\n";
+                break;
+            case 3:
+                this->cmd = "   imul\n";
+                break;
+            case 4:
+                this->cmd = "   idiv\n";
+                break;
+            case 5:
+                this->cmd = "   sipush ";
+                break;
+            }
         }
-    }
 
-    QString toString() {
-        //return cmd + value;
-        if (value.isEmpty()) {
-            return cmd;
+        void print() {
+            if (value.isEmpty()) {
+                qDebug() << cmd;
+            } else {
+                qDebug() << cmd << value << "\n";
+            }
         }
-        return cmd + value + "\n";
-    }
 
-private:
-    QString cmd;
-    QString value;
-};
+        QString toString() {
+            //return cmd + value;
+            if (value.isEmpty()) {
+                return cmd;
+            }
+            return cmd + value + "\n";
+        }
 
-class Translator
-{
-public:
-    Translator();
+    private:
+        QString cmd;
+        QString value;
+    };
 
-    void print();
+    class Translator
+    {
+    public:
+        Translator();
 
-    void setNodes(QVector <Node*> nodes) {
-        this->nodes = nodes;
-    }
+        void print();
 
-private:
-    QVector <ByteCode*> code;
-    QVector <Node*> nodes;
-    int maxPriority;
-};
+        void setNodes(QVector <Node*> nodes) {
+            this->nodes = nodes;
+        }
+
+        void setMaxPriority(int maxPriority) {
+            this->maxPriority = maxPriority;
+        }
+
+        void createFile();
+
+    private:
+        QVector <ByteCode*> code;
+        QVector <Node*> nodes;
+        int maxPriority;
+    };
+
+}
 
 #endif // TRANSLATOR_H
